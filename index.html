@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A personal portfolio for a nursing student.">
+  <title>My Journey in Care | Personal Portfolio</title>
+  <style>
+    :root {
+      --ink: #172b35;
+      --muted: #60747b;
+      --teal: #167c80;
+      --mint: #dff3ed;
+      --cream: #fbfaf6;
+      --coral: #f28c72;
+      --white: #fff;
+      --line: rgba(23, 43, 53, .12);
+      --shadow: 0 18px 50px rgba(28, 63, 68, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1100px, calc(100% - 40px)); margin: auto; }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(251,250,246,.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-weight: 850; letter-spacing: -.04em; font-size: 1.1rem; }
+    .brand span { color: var(--teal); }
+    .navlinks { display: flex; gap: 24px; color: var(--muted); font-size: .92rem; }
+    .navlinks a:hover { color: var(--teal); }
+    .hero { padding: 76px 0 84px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 54px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--teal); font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+    .dot { width: 8px; height: 8px; background: var(--coral); border-radius: 50%; }
+    h1 { margin: 18px 0; font-size: clamp(2.8rem, 6vw, 5.3rem); line-height: .99; letter-spacing: -.065em; }
+    h1 em { color: var(--teal); font-style: normal; }
+    .intro { max-width: 560px; color: var(--muted); font-size: 1.08rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 19px; border-radius: 999px; font-weight: 750; font-size: .92rem; transition: .2s; }
+    .btn.primary { color: white; background: var(--teal); box-shadow: 0 8px 20px rgba(22,124,128,.2); }
+    .btn.primary:hover { transform: translateY(-2px); background: #11696d; }
+    .btn.secondary { border: 1px solid var(--line); background: white; }
+    .portrait-area { position: relative; min-height: 420px; display: grid; place-items: center; }
+    .portrait-blob { position: absolute; width: min(390px, 90%); aspect-ratio: 1; background: var(--mint); border-radius: 48% 52% 62% 38% / 42% 42% 58% 58%; transform: rotate(-8deg); }
+    .portrait-frame {
+      position: relative; width: min(310px, 76%); aspect-ratio: 4 / 5;
+      border: 9px solid white; border-radius: 170px 170px 28px 28px;
+      background: linear-gradient(145deg, #d9ebe4, #f5d9ce);
+      box-shadow: var(--shadow); overflow: hidden;
+    }
+    .portrait-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-note { position: absolute; bottom: 20px; right: 0; background: white; padding: 12px 17px; border-radius: 15px; box-shadow: var(--shadow); color: var(--muted); font-size: .78rem; transform: rotate(3deg); }
+    .photo-note strong { display: block; color: var(--ink); font-size: .9rem; }
+    section { padding: 76px 0; }
+    .section-head { max-width: 650px; margin-bottom: 34px; }
+    .kicker { color: var(--teal); text-transform: uppercase; letter-spacing: .14em; font-size: .75rem; font-weight: 850; }
+    h2 { margin: 8px 0 12px; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.08; letter-spacing: -.05em; }
+    .section-head p, .muted { color: var(--muted); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .panel { background: white; border: 1px solid var(--line); border-radius: 22px; padding: 28px; box-shadow: 0 8px 30px rgba(28,63,68,.04); }
+    .panel h3 { margin: 0 0 10px; font-size: 1.2rem; }
+    .quote { background: var(--ink); color: white; border-radius: 22px; padding: 30px; display: flex; flex-direction: column; justify-content: center; }
+    .quote p { font-size: 1.35rem; line-height: 1.35; letter-spacing: -.025em; margin: 0 0 16px; }
+    .quote small { color: #b9d5d2; }
+    .timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .stop { background: white; border: 1px solid var(--line); border-radius: 20px; padding: 24px; position: relative; }
+    .stop:before { content: ""; display: block; width: 34px; height: 4px; background: var(--coral); border-radius: 4px; margin-bottom: 19px; }
+    .stop .place { color: var(--teal); font-size: .75rem; text-transform: uppercase; letter-spacing: .12em; font-weight: 850; }
+    .stop h3 { margin: 7px 0; font-size: 1.13rem; }
+    .stop p { color: var(--muted); font-size: .92rem; margin: 0; }
+    .interests { background: #edf6f2; }
+    .tags { display: flex; flex-wrap: wrap; gap: 12px; }
+    .tag { background: white; border: 1px solid rgba(22,124,128,.13); border-radius: 999px; padding: 11px 17px; font-weight: 700; color: #31545a; }
+    .tag span { margin-right: 7px; }
+    .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 36px; align-items: start; }
+    .contact-card { background: white; border: 1px solid var(--line); border-radius: 22px; padding: 26px; }
+    .contact-row { display: flex; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+    .contact-row:last-child { border: 0; }
+    .contact-icon { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 12px; background: var(--mint); }
+    .contact-row small { display: block; color: var(--muted); }
+    footer { padding: 24px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    @media (max-width: 760px) {
+      .navlinks { gap: 13px; font-size: .82rem; }
+      .hero { padding: 54px 0 62px; }
+      .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .hero-grid { gap: 18px; }
+      .portrait-area { min-height: 350px; }
+      .timeline { grid-template-columns: 1fr; }
+      section { padding: 58px 0; }
+    }
+    @media (max-width: 440px) {
+      .wrap { width: min(100% - 28px, 1100px); }
+      nav { align-items: flex-start; flex-direction: column; padding: 14px 0; gap: 8px; }
+      .navlinks { flex-wrap: wrap; }
+      h1 { font-size: 3.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap">
+      <a class="brand" href="#home">CARE<span>+</span>PERSONALITY</a>
+      <div class="navlinks">
+        <a href="#about">About</a>
+        <a href="#journey">My journey</a>
+        <a href="#interests">Interests</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> Nursing student · Future healthcare professional</div>
+          <!-- Replace the name below with your friend's name -->
+          <h1>Hello, I'm <em>Oussema Smiri</em>.</h1>
+          <p class="intro">A third-year nursing student, curious by nature and passionate about people. I'm getting ready for the next chapter: turning what I've learned into meaningful care, one person at a time.</p>
+          <div class="actions">
+            <a class="btn primary" href="#journey">Discover my journey ↗</a>
+            <a class="btn secondary" href="#contact">Get in touch</a>
+          </div>
+        </div>
+
+        <div class="portrait-area">
+          <div class="portrait-blob"></div>
+          <div class="portrait-frame">
+            <!-- Add his photo in a folder named "images" and name it profile.jpg -->
+            <img src="images/profile.jpg" alt="Portrait of Oussema Smiri" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(145deg,#d9ebe4,#f5d9ce)';">
+          </div>
+          <div class="photo-note"><strong>A little about me</strong>Care, curiosity & good energy.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">A bit about me</div>
+          <h2>Taking care of people is more than a career.</h2>
+          <p>It's about listening, learning, staying calm when it matters, and bringing a little humanity into every interaction.</p>
+        </div>
+        <div class="about-grid">
+          <article class="panel">
+            <h3>Where I am now</h3>
+            <p class="muted">I'm currently in my third year of nursing studies and approaching graduation. My training has helped me build practical experience, adapt to different hospital environments, and better understand the teamwork behind quality patient care.</p>
+          </article>
+          <article class="quote">
+            <p>“Professional when it counts, creative whenever possible, and always up for a good conversation.”</p>
+            <small>A short description from someone who enjoys life as much as learning.</small>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="journey">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Clinical experience</div>
+          <h2>Learning by being there.</h2>
+          <p>Each internship has been a chance to discover a new specialty, learn from healthcare teams, and grow through real clinical experience.</p>
+        </div>
+        <div class="timeline">
+          <article class="stop">
+            <div class="place">Internship · Tunis</div>
+            <h3>Hôpital La Rabta</h3>
+            <p><strong>Pneumologie</strong><br>Experience in a respiratory-care setting and exposure to the needs of patients with pulmonary conditions.</p>
+          </article>
+          <article class="stop">
+            <div class="place">Internship · Tunis</div>
+            <h3>Hôpital Charles Nicolle</h3>
+            <p><strong>Urologie</strong><br>A chance to discover urological care, patient support, and the daily work of a specialized hospital team.</p>
+          </article>
+          <article class="stop">
+            <div class="place">Internship · Tunis</div>
+            <h3>Hôpital Militaire</h3>
+            <p><strong>Bloc opératoire</strong><br>Discovering the operating-room environment, where precision, preparation, and teamwork are essential.</p>
+          </article>
+        </div>
+        <!-- Edit the descriptions above if you want to list specific duties or skills he practiced. -->
+      </div>
+    </section>
+
+    <section class="interests" id="interests">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Outside the hospital</div>
+          <h2>Many interests. One curious mind.</h2>
+          <p>There's a whole world beyond the classroom and hospital corridors. These are a few things that keep me inspired and energized.</p>
+        </div>
+        <div class="tags">
+          <span class="tag"><span>🎮</span>Gaming</span>
+          <span class="tag"><span>🎵</span>Music</span>
+          <span class="tag"><span>🕺</span>Dance</span>
+          <span class="tag"><span>🍿</span>Anime & movies</span>
+          <span class="tag"><span>🥋</span>Karate</span>
+          <span class="tag"><span>⚽</span>Football & sports</span>
+          <span class="tag"><span>🐾</span>Animals</span>
+          <span class="tag"><span>✈️</span>Travel</span>
+          <span class="tag"><span>💬</span>Good conversations</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap contact-grid">
+        <div class="section-head">
+          <div class="kicker">Say hello</div>
+          <h2>Let's connect.</h2>
+          <p>Whether it's about nursing, a shared interest, a new opportunity, or simply a friendly conversation, feel free to reach out.</p>
+        </div>
+        <div class="contact-card">
+          <!-- Replace the placeholder details with his real contact information. -->
+          <div class="contact-row">
+            <div class="contact-icon">📍</div>
+            <div><small>Location</small><strong>Tunis, Tunisia</strong></div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon">✉️</div>
+            <div><small>Email</small><strong><a href="mailto:smirioussama1@gmail.com">smirioussama1@gmail.com</a></strong></div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon">📞</div>
+            <div><small>Phone</small><strong>+216 29 836 609</strong></div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon">🌐</div>
+            <div><small>GitHub</small><strong><a href="https://github.com/UchihaOussema" target="_blank" rel="noopener noreferrer">github.com/UchihaOussema</a></strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="year"></span> Oussema Smiri. Made with care.</span>
+      <span>Always learning. Always growing.</span>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
